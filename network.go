@@ -46,6 +46,7 @@ func newNetwork(ctx context.Context, deps resource.Dependencies, conf resource.C
 }
 func (n *networkComponent) Name() resource.Name{return n.name}
 func (n *networkComponent) Close(context.Context) error{return nil}
+func (n *networkComponent) Status(context.Context) (map[string]interface{},error) {return map[string]interface{}{},nil}
 func (n *networkComponent) Geometries(context.Context,map[string]interface{}) ([]spatialmath.Geometry,error){return nil,nil}
 func (n *networkComponent) timeout() time.Duration { v:=n.cfg.TimeoutMS;if v==0 {v=750};return time.Duration(v)*time.Millisecond }
 func (n *networkComponent) allowed(ip net.IP) bool {
