@@ -50,7 +50,7 @@ func (n *networkComponent) Geometries(context.Context,map[string]interface{}) ([
 func (n *networkComponent) timeout() time.Duration { v:=n.cfg.TimeoutMS;if v==0 {v=750};return time.Duration(v)*time.Millisecond }
 func (n *networkComponent) allowed(ip net.IP) bool {
  if ip==nil || ip.IsLoopback() || ip.IsMulticast() || ip.IsUnspecified() {return false}
- if len(n.cfg.AllowedCIDRs)>0 {for _,s:=range n.cfg.AllowedCIDRs){_,sub,_:=net.ParseCIDR(s);if sub.Contains(ip){return true}};return false}
+ if len(n.cfg.AllowedCIDRs)>0 {for _,s:=range n.cfg.AllowedCIDRs {_,sub,_:=net.ParseCIDR(s);if sub.Contains(ip){return true}};return false}
  // Without an explicit allowlist, restrict probes to private/link-local destinations.
  return ip.IsPrivate() || ip.IsLinkLocalUnicast()
 }
