@@ -21,7 +21,7 @@ import (
 var NetworkModel = family.WithModel("network")
 
 func init() {
- resource.RegisterComponent(generic.API, NetworkModel, resource.Registration[generic.Generic, *networkConfig]{Constructor: newNetwork})
+ resource.RegisterComponent(generic.API, NetworkModel, resource.Registration[resource.Resource, *networkConfig]{Constructor: newNetwork})
 }
 
 type networkConfig struct {
@@ -40,7 +40,7 @@ type networkComponent struct {
  name resource.Name
  cfg *networkConfig
 }
-func newNetwork(ctx context.Context, deps resource.Dependencies, conf resource.Config, logger logging.Logger) (generic.Generic,error) {
+func newNetwork(ctx context.Context, deps resource.Dependencies, conf resource.Config, logger logging.Logger) (resource.Resource,error) {
  c,err:=resource.NativeConfig[*networkConfig](conf);if err!=nil{return nil,err}
  return &networkComponent{name:conf.ResourceName(),cfg:c},nil
 }
