@@ -14,6 +14,11 @@
       "api": "rdk:component:sensor",
       "model": "erh:viam-system:apt",
       "markdown_link": "README.md#apt"
+    },
+    {
+      "api": "rdk:component:generic",
+      "model": "erh:viam-system:network",
+      "markdown_link": "README.md#network"
     }
   ],
   "entrypoint": "./bin/viam-system-module",
